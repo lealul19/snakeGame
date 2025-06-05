@@ -13,8 +13,36 @@ import javafx.util.Duration;
 import java.util.LinkedList;
 import java.util.Random;
 
-private void spawnApple() {
-    Random rand = new Random();
-    appleX = rand.nextInt(WIDTH);
-    appleY = rand.nextInt(HEIGHT);
+public class HelloController {
+    @FXML
+    private Canvas gameCanvas;
+    private GraphicsContext gc;
+    private Timeline timeline;
+
+    private static final int SIZE = 20;
+    private static final int WIDTH = 30;
+    private static final int HEIGHT = 20;
+    private int appleX, appleY;
+    private int score = 0;
+    private char direction = 'R';
+    private LinkedList<int[]> snake = new LinkedList<>();
+
+    public void initialize() {
+        gc = gameCanvas.getGraphicsContext2D();
+        snake.add(new int[]{10, 10});
+        spawnApple();
+
+        timeline = new Timeline(new KeyFrame(Duration.millis(150), e -> {
+            move();
+            draw();
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+
+        Platform.runLater(() -> {
+            gameCanvas.getScene().setOnKeyPressed(this::handleKeyPress);
+        });
+    }
+
+
 }
