@@ -12,3 +12,19 @@ import javafx.util.Duration;
 
 import java.util.LinkedList;
 import java.util.Random;
+
+public class HelloController {
+    @FXML
+    private Canvas gameCanvas;
+    private GraphicsContext gc;
+    private Timeline timeline;
+
+    private static final int SIZE = 20;
+    private static final int WIDTH = 30;
+    private static final int HEIGHT = 20;
+    private int appleX, appleY;
+    private int score = 0;
+    private char direction = 'R';
+    private LinkedList<int[]> snake = new LinkedList<>();
+}
+
