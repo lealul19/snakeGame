@@ -50,5 +50,14 @@ public class HelloController {
         appleY = rand.nextInt(HEIGHT);
     }
 
+    private void handleKeyPress(KeyEvent e) {
+        switch (e.getCode()) {
+            case UP -> { if (direction != 'D') direction = 'U'; }
+            case DOWN -> { if (direction != 'U') direction = 'D'; }
+            case LEFT -> { if (direction != 'R') direction = 'L'; }
+            case RIGHT -> { if (direction != 'L') direction = 'R'; }
+        }
+    }
+
 
 }
