@@ -43,4 +43,6 @@ public class HelloController {
             gameCanvas.getScene().setOnKeyPressed(this::handleKeyPress);
         });
     }
+
+
 }
