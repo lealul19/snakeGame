@@ -12,7 +12,6 @@ import javafx.util.Duration;
 
 import java.util.LinkedList;
 import java.util.Random;
-
 public class HelloController {
     @FXML
     private Canvas gameCanvas;
@@ -26,5 +25,22 @@ public class HelloController {
     private int score = 0;
     private char direction = 'R';
     private LinkedList<int[]> snake = new LinkedList<>();
+
+    public void initialize() {
+        gc = gameCanvas.getGraphicsContext2D();
+        snake.add(new int[]{10, 10});
+        spawnApple();
+
+        timeline = new Timeline(new KeyFrame(Duration.millis(150), e -> {
+            move();
+            draw();
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+
+        Platform.runLater(() -> {
+            gameCanvas.getScene().setOnKeyPressed(this::handleKeyPress);
+        });
+    }
 }
 
