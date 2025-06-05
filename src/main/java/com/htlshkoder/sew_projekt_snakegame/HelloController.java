@@ -12,3 +12,9 @@ import javafx.util.Duration;
 
 import java.util.LinkedList;
 import java.util.Random;
+
+private void spawnApple() {
+    Random rand = new Random();
+    appleX = rand.nextInt(WIDTH);
+    appleY = rand.nextInt(HEIGHT);
+}
