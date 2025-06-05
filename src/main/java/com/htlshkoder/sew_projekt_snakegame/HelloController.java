@@ -44,5 +44,11 @@ public class HelloController {
         });
     }
 
+    private void spawnApple() {
+        Random rand = new Random();
+        appleX = rand.nextInt(WIDTH);
+        appleY = rand.nextInt(HEIGHT);
+    }
+
 
 }
