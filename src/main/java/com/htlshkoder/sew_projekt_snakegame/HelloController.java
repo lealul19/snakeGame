@@ -50,5 +50,33 @@ public class HelloController {
         appleY = rand.nextInt(HEIGHT);
     }
 
+    private void move() {
+        int[] head = snake.getFirst().clone();
+        switch (direction) {
+            case 'U' -> head[1]--;
+            case 'D' -> head[1]++;
+            case 'L' -> head[0]--;
+            case 'R' -> head[0]++;
+        }
+
+        if (head[0] < 0 || head[0] >= WIDTH || head[1] < 0 || head[1] >= HEIGHT ||
+                snake.stream().anyMatch(p -> p[0] == head[0] && p[1] == head[1])) {
+            timeline.stop();
+            gc.setFill(Color.YELLOW);
+            gc.fillText("Game Over! Final Score: " + score, WIDTH * SIZE / 2 - 80, HEIGHT * SIZE / 2);
+            return;
+        }
+
+        snake.addFirst(head);
+
+        if (head[0] == appleX && head[1] == appleY) {
+            spawnApple();
+            score++;
+        } else {
+            snake.removeLast();
+        }
+    }
+
+
 
 }
