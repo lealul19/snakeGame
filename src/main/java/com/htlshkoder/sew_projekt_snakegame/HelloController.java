@@ -77,6 +77,22 @@ public class HelloController {
         }
     }
 
+    private void draw() {
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, WIDTH * SIZE, HEIGHT * SIZE);
+
+        gc.setFill(Color.RED);
+        gc.fillOval(appleX * SIZE, appleY * SIZE, SIZE, SIZE);
+
+        gc.setFill(Color.LIMEGREEN);
+        for (int[] p : snake) {
+            gc.fillRect(p[0] * SIZE, p[1] * SIZE, SIZE - 1, SIZE - 1);
+        }
+        gc.setFill(Color.WHITE);
+        gc.setFont(javafx.scene.text.Font.font("Arial", 18));
+        gc.fillText("Score: " + score, 10, 20);
+    }
+
 
 
 }
